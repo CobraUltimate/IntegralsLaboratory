@@ -1,0 +1,21 @@
+<!DOCTYPE raiz
+[
+<!ELEMENT raiz (response,response1)>
+<!ELEMENT response (name)>
+<!ELEMENT response1 (pas)>
+<!ELEMENT name(#PCDATA)>
+<!ELEMENT pas(#PCDATA)>
+]>
+<raiz>
+<response>
+<name>RUBEN1</name>
+<name>RUBEN2</name>
+<name>RUBEN3</name>
+</response>
+
+<response1>
+<pas>123</pas>
+<pas>1234</pas>
+<pas>12345</pas>
+</response1>
+</raiz>
