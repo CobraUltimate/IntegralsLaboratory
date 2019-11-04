@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import LayoutSplitter from './components/layout/LayoutSplitter.jsx';
 import FormContainer from './components/container/FormContainer.jsx';
+import Plot from 'react-function-plot';
 import "./style.css";
 
 class MainWindow extends Component {

@@ -32,9 +32,8 @@ public class Loggin extends HttpServlet{
                     break;
                 case 1:
                     userValidationResult = "Correct user";
-                    response.sendRedirect("Loggin");
+                    response.sendRedirect("exerciseAdmin.html");
                     return;
-                    break;
             }
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
