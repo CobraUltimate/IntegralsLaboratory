@@ -1,0 +1,11 @@
+.left-column {
+  float: left;
+}
+.right-column{
+  float: left;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
