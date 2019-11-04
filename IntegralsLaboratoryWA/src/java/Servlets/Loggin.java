@@ -20,7 +20,7 @@ public class Loggin extends HttpServlet{
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 	throws ServletException, IOException{
             String user = request.getParameter("user");
-            String pass = request.getParameter("pass");
+            String pass = request.getParameter("password");
             String userValidationResult = "";
 
             switch(UserValidator.validateUser(user, pass,this)){
@@ -32,6 +32,8 @@ public class Loggin extends HttpServlet{
                     break;
                 case 1:
                     userValidationResult = "Correct user";
+                    response.sendRedirect("Loggin");
+                    return;
                     break;
             }
             response.setContentType("text/html;charset=UTF-8");
