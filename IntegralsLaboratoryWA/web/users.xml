@@ -1,0 +1,20 @@
+<!DOCTYPE root
+[
+<!ELEMENT root (users,passwords)>
+<!ELEMENT users (user*)>
+<!ELEMENT passwords (password*)>
+<!ELEMENT user (#PCDATA)>
+<!ELEMENT password (#PCDATA)>
+]>
+<root>
+<users>
+<user>RUBEN1</user>
+<user>RUBEN2</user>
+<user>RUBEN3</user>
+</users>
+<passwords>
+<password>123</password>
+<password>1234</password>
+<password>12345</password>
+</passwords>
+</root>

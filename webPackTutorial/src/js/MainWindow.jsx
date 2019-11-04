@@ -12,7 +12,7 @@ class MainWindow extends Component {
       return (
         <LayoutSplitter
             leftColumn={(
-                <FormContainer/>
+                <p>'Aquí iría la gráfica, si tan solo la hubieramos hecho.jpg'</p>
             )}
             rightColumn={(
                 <div className="outer-div">
