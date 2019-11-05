@@ -18,6 +18,9 @@ class FormContainer extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
   }
+  sendData = () => {
+    this.props.sendIntegral(this.state.integral);
+  }
   handleChange(event) {
     const integrateString = "integrate(" + event.target.value + ",x)";
     try {
@@ -25,6 +28,7 @@ class FormContainer extends Component {
         [event.target.id]: event.target.value,
         integral: nerdamer(integrateString)
       });
+      this.props.sendIntegral(this.state.integral.text);
     } catch (error) {
       this.setState({ 
         [event.target.id]: event.target.value,
@@ -32,6 +36,7 @@ class FormContainer extends Component {
       });
     }
   }
+  
   render() {
     const { equation } = this.state;
     const { integral } = this.state;

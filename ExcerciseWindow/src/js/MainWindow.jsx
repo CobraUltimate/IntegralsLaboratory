@@ -8,17 +8,23 @@ import "./style.css";
 class MainWindow extends Component {
     constructor() {
         super();
+        this.state = {
+            integral: "Waiting Data"
+        }
+    }
+    getIntegral = (childData) => {
+        this.setState({integral: childData})
     }
     render() {
       return (
         <LayoutSplitter
             leftColumn={(
-                <p>'Aquí iría la gráfica, si tan solo la hubieramos hecho.jpg'</p>
+                <p>Integral: {this.state.integral}</p>
             )}
             rightColumn={(
                 <div className="outer-div">
                         <div>
-                            <FormContainer/>
+                            <FormContainer sendIntegral={this.getIntegral}/>
                         </div>
                 </div>
             )}
