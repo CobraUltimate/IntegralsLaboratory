@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import MathML from 'react-math';
 import LayoutSplitter from '../layout/LayoutSplitter.jsx';
 import Input from "../presentational/Input.jsx";
 import "./style.css";
@@ -10,7 +11,7 @@ class FormContainer extends Component {
   constructor() {
     super();
     this.state = {
-      equation: "",
+      expression: "",
       integral: "",
       startX: "",
       finalX: "",
@@ -22,13 +23,13 @@ class FormContainer extends Component {
     this.props.sendIntegral(this.state.integral);
   }
   handleChange(event) {
-    const integrateString = "integrate(" + event.target.value + ",x)";
     try {
+      const expressionIntegral = nerdamer("integrate(" + event.target.value + ",x)");
       this.setState({ 
         [event.target.id]: event.target.value,
-        integral: nerdamer(integrateString)
+        integral: expressionIntegral
       });
-      this.props.sendIntegral(this.state.integral.text);
+      this.props.sendIntegral(expressionIntegral);
     } catch (error) {
       this.setState({ 
         [event.target.id]: event.target.value,
@@ -38,7 +39,7 @@ class FormContainer extends Component {
   }
   
   render() {
-    const { equation } = this.state;
+    const { expression } = this.state;
     const { integral } = this.state;
     const { startX } = this.state;
     const { finalX } = this.state;
@@ -46,13 +47,14 @@ class FormContainer extends Component {
     return (
       <form id="integral-form" className="center-text">
         <Input
-          text="Equation"
-          label="equation"
+          text="Expression"
+          label="expression"
           type="text"
-          id="equation"
-          value={equation}
+          id="expression"
+          value={expression}
           handleChange={this.handleChange}
         />
+        <MathML text='e^(i pi)=-1'/>
         <Input
           text="Integral"
           label="integral"

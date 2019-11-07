@@ -2,14 +2,15 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import LayoutSplitter from './components/layout/LayoutSplitter.jsx';
 import FormContainer from './components/container/FormContainer.jsx';
-import Plot from 'react-function-plot';
+import Graph from './components/graph/Graph.jsx';
+
 import "./style.css";
 
 class MainWindow extends Component {
     constructor() {
         super();
         this.state = {
-            integral: "Waiting Data"
+            integral: "x*x"
         }
     }
     getIntegral = (childData) => {
@@ -19,7 +20,9 @@ class MainWindow extends Component {
       return (
         <LayoutSplitter
             leftColumn={(
-                <p>Integral: {this.state.integral}</p>
+                <Graph 
+                    expression={this.state.integral.toString()}
+                />
             )}
             rightColumn={(
                 <div className="outer-div">
