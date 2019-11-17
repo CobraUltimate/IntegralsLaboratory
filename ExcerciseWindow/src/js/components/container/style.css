@@ -6,3 +6,6 @@
 .center-text{
     text-align: center;
 }
+label{
+    padding-top: 10px;
+}

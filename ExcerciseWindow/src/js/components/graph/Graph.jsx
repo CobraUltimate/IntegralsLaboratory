@@ -15,7 +15,7 @@ class Graph extends Component {
         super();
         const xInitialValues = [];
         const yInitialValues = [];
-        const expr = math.compile("x^3");
+        const expr = math.compile("x*x");
         this.getValues(xInitialValues,yInitialValues,-10,10,0.5, (x) => expr.evaluate({x: x}));
         this.state = {
             data: [
@@ -51,7 +51,6 @@ class Graph extends Component {
             ] 
         })
     } catch (error) {
-        alert("Error");
     }
   }
   render() {

@@ -10,24 +10,24 @@ class MainWindow extends Component {
     constructor() {
         super();
         this.state = {
-            integral: "x*x"
+            expression: "x*x"
         }
     }
-    getIntegral = (childData) => {
-        this.setState({integral: childData})
+    getExpression = (childData) => {
+        this.setState({expression: childData})
     }
     render() {
       return (
         <LayoutSplitter
             leftColumn={(
                 <Graph 
-                    expression={this.state.integral.toString()}
+                    expression={this.state.expression.toString()}
                 />
             )}
             rightColumn={(
                 <div className="outer-div">
                         <div>
-                            <FormContainer sendIntegral={this.getIntegral}/>
+                            <FormContainer sendExpression={this.getExpression}/>
                         </div>
                 </div>
             )}
