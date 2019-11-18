@@ -10,11 +10,19 @@ class MainWindow extends Component {
     constructor() {
         super();
         this.state = {
-            expression: "x*x"
+            expression: "x*x",
+            xStart: "0",
+            xFinal: "0"
         }
     }
     getExpression = (childData) => {
         this.setState({expression: childData})
+    }
+    getGraphStart = (childData) => {
+        this.setState({xStart: childData})
+    }
+    getGraphFinal = (childData) => {
+        this.setState({xFinal: childData})
     }
     render() {
       return (
@@ -22,12 +30,18 @@ class MainWindow extends Component {
             leftColumn={(
                 <Graph 
                     expression={this.state.expression.toString()}
+                    xStart={this.state.xStart}
+                    xFinal={this.state.xFinal}
                 />
             )}
             rightColumn={(
                 <div className="outer-div">
                         <div>
-                            <FormContainer sendExpression={this.getExpression}/>
+                            <FormContainer 
+                                sendExpression={this.getExpression}
+                                sendGraphStart={this.getGraphStart}
+                                sendGraphFinal={this.getGraphFinal}
+                            />
                         </div>
                 </div>
             )}

@@ -30,6 +30,7 @@
     "webpack-dev-server": "^3.8.2"
   },
   "dependencies": {
+    "babel-plugin-transform-remove-strict-mode": "0.0.2",
     "mathjs": "^6.2.3",
     "plotly.js": "^1.51.1",
     "react": "^16.10.1",

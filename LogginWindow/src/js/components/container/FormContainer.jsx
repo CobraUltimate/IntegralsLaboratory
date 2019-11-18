@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import Input from "../presentational/Input.jsx";
 import "./style.css";
+import "./useful.css";
 
 class FormContainer extends Component {
   constructor() {
@@ -21,12 +22,21 @@ class FormContainer extends Component {
     const { user } = this.state;
     const { password } = this.state;
     return (
+   <div class="limiter">
+		<div class="container-login">
+			<div class="wrap-login">
       <form action="Loggin" method="get" className="center-text">
-        <div>
-          <div className="Absolute-Center">
-            <div>
-              <div className="input">
+        
+          <div className="login-form validate-form p-l-55 p-r-55 p-t-178">
+            
+            <span class="login-form-title">
+						Loggin
+					</span>
+          </div>
+          
+              <div className="wrap-input100 validate-input m-b-16">
                 <Input
+                class="input100"
                   text="User"
                   label="user"
                   type="text"
@@ -35,9 +45,11 @@ class FormContainer extends Component {
                   name="user"
                   handleChange={this.handleChange}
                 />
+                <span class="focus-input100"></span>
               </div>
-              <div className="input">
+              <div className="wrap-input100 validate-input">
                 <Input
+                class="input100"
                   text="Password"
                   label="password"
                   type="text"
@@ -46,10 +58,12 @@ class FormContainer extends Component {
                   name="password"
                   handleChange={this.handleChange}
                 />
+                <span class="focus-input100"></span>
               </div>
-              <div className="input">
+              <div className="container-login-form-btn">
                 <Input
                   text=""
+                  class="login-form-btn"
                   label="singIn"
                   type="submit"
                   id="singIn"
@@ -58,10 +72,12 @@ class FormContainer extends Component {
                   handleChange={this.handleChange}
                 />
               </div>
-            </div>
-          </div>
-        </div>
+          
+              
       </form>
+      </div>
+     </div>
+     </div>
     );
   }
 }

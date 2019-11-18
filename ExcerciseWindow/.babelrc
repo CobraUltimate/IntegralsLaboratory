@@ -9,6 +9,9 @@
         {
           "loose": true
         }
+      ],
+      [
+        "transform-remove-strict-mode"
       ]
   ]
 }

@@ -3,16 +3,12 @@ package Servlets;
 //AutocompletadoServlet.java
 
 import Services.UserValidator;
-import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.http.HttpServlet;
-import org.jdom.Document;
-import org.jdom.input.SAXBuilder;
 
 public class Loggin extends HttpServlet{
 	
@@ -32,7 +28,7 @@ public class Loggin extends HttpServlet{
                     break;
                 case 1:
                     userValidationResult = "Correct user";
-                    response.sendRedirect("exerciseAdmin.html");
+                    response.sendRedirect("exerciseWindow.html");
                     return;
             }
             response.setContentType("text/html;charset=UTF-8");

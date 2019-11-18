@@ -17,7 +17,6 @@ class MathDisplay extends Component{
         const { expression } = this.state;
         return (
             <MathJax.Context
-                input = { expression }
                 onLoad={ () => console.log("Loaded MathJax script!") }
                 onError={ (MathJax, error) => {
                     console.warn(error);
