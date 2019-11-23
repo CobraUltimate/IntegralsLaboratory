@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<save xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="savedExercisesSchema.xsd">
+  
+    <user id="Ruben1">
+        
+        <exercise id="0">
+            
+            <expression>x*x^3</expression>
+            <xStart>223</xStart>
+            <xFinal>499</xFinal>
+            <creationDate>2019-08-17</creationDate>
+            
+        </exercise>
+        
+        <exercise id="1">
+            
+            <expression>x^3</expression>
+            <xStart>2</xStart>
+            <xFinal>4</xFinal>
+            <creationDate>2019-08-19</creationDate>
+            
+        </exercise>
+        
+     </user>
+     
+     <user id="Ruben1">
+        
+        <exercise id="1">
+            
+            <expression>(20+x*x)^3</expression>
+            <xStart>22</xStart>
+            <xFinal>45</xFinal>
+            <creationDate>2019-11-17</creationDate>
+            
+        </exercise>
+        
+     </user>
+     
+    <user id="Ruben2">
+        
+        <exercise id="0">
+            
+            <expression>x*x^3</expression>
+            <xStart>22323</xStart>
+            <xFinal>49299</xFinal>
+            <creationDate>2019-11-15</creationDate>
+            
+        </exercise>
+        
+    </user>
+  
+    <user id="Ruben3">
+        
+        <exercise id="0">
+            
+            <expression>x*x^3</expression>
+            <xStart>22323</xStart>
+            <xFinal>49299</xFinal>
+            <creationDate>2019-07-07</creationDate>
+            
+        </exercise>
+        
+    </user>
+    
+     <user id="Ruben3">
+        
+        <exercise id="1">
+            
+            <expression>x*x^3</expression>
+            <xStart>22323</xStart>
+            <xFinal>49299</xFinal>
+            <creationDate>2019-07-07</creationDate>
+            
+        </exercise>
+        
+    </user>
+ 
+ 
+</save>

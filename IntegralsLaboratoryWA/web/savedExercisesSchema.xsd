@@ -1,0 +1,83 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+ 
+    <xs:element name="save">
+        
+        <xs:complexType mixed="true">
+          
+            <xs:sequence>
+    
+                <xs:element name="user" maxOccurs="unbounded">
+        
+                    <xs:complexType mixed="true">
+                        
+                           <xs:complexContent>
+                
+                               <xs:extension base="usertype">
+            
+                                  <xs:attribute name="id" type="xs:string" />
+                                        
+                               </xs:extension>
+            
+                            </xs:complexContent>
+
+                    </xs:complexType>             
+        
+                </xs:element>
+
+            </xs:sequence>
+          
+        </xs:complexType>
+        
+    </xs:element>
+    
+    
+    <xs:complexType mixed="true" name="usertype">
+        
+        <xs:sequence>
+            
+          <xs:element name="exercise" maxOccurs="unbounded">
+            
+          <xs:complexType mixed="true">
+              
+                        
+                           <xs:complexContent>
+                
+                               <xs:extension base="elemnttype">
+            
+                                  <xs:attribute name="id" type="xs:integer" />
+                                        
+                               </xs:extension>
+            
+                            </xs:complexContent>
+              
+
+            </xs:complexType>
+          
+          </xs:element>
+          
+        </xs:sequence>
+        
+    </xs:complexType>
+    
+    <xs:complexType name="elemnttype" mixed="true">
+        
+        <xs:sequence>
+        
+           <xs:element name="expression" type="xs:string"/>
+           <xs:element name="xStart" type="xs:integer"/>
+           <xs:element name="xFinal" type="xs:integer"/>
+           <xs:element name="creationDate" type="xs:date"/>
+                
+         </xs:sequence>
+        
+    </xs:complexType>
+    
+    
+        
+
+    
+      
+    
+        
+</xs:schema>

@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
 
 public class Loggin extends HttpServlet{
 	
@@ -28,7 +29,10 @@ public class Loggin extends HttpServlet{
                     break;
                 case 1:
                     userValidationResult = "Correct user";
-                    response.sendRedirect("exerciseWindow.html");
+                    //response.sendRedirect("exerciseWindow.html");
+                    HttpSession session = request.getSession();
+                    session.setAttribute("user", user);
+                    response.sendRedirect("GetUserExercises");
                     return;
             }
             response.setContentType("text/html;charset=UTF-8");
