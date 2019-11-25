@@ -11,15 +11,33 @@ import definiteIntegral from "../../../../nerdamer-master/Calculus";
 class FormContainer extends Component {
   constructor() {
     super();
+
+    var params = {};
+    this.getParameters(window.location.href,params);
+
     this.state = {
       expression: "",
       integral: "",
       startX: "",
       finalX: "",
-      definiteIntegral: ""
+      definiteIntegral: "",
+      params: params
     };
     this.handleChange = this.handleChange.bind(this);
   }
+
+  async save(url){
+    let response = await fetch(url);
+        if (response.ok) { // if HTTP-status is 200-299
+          // get the response body (the method explained below)
+          let json = await response.json();
+          alert("HTTP-Error: " + response.status);
+          alert("HTTP-Error: " + response.json);
+        } else {
+          alert("HTTP-Error: " + response.status);
+        }
+  }
+  
   componentDidMount(){
     this.setState({
       expression: "",
@@ -29,6 +47,7 @@ class FormContainer extends Component {
     this.props.sendExpression("x");
   }
   handleChange(event) {
+    var url;
     if ([event.target.id] == "expression"){
       try {
         const expressionIntegral = nerdamer("integrate(" + event.target.value + ",x)");
@@ -37,6 +56,10 @@ class FormContainer extends Component {
           integral: expressionIntegral
         });
         this.props.sendExpression(event.target.value);
+
+        url = "Autosave?exerciseId=" + this.state.params["exerciseId"] + "&expression=" + event.target.value + "&xStart=" + this.state.startX + "&xFinal=" + this.state.finalX;
+        fetch(url);
+
       } catch (error) {
         this.setState({
           [event.target.id]: event.target.value,
@@ -50,12 +73,38 @@ class FormContainer extends Component {
       });
       if(event.target.id == "startX"){
         this.props.sendGraphStart(event.target.value);
+        url = "Autosave?exerciseId=" + this.state.params["exerciseId"] + "&expression=" + this.state.expression + "&xStart=" + event.target.value + "&xFinal=" + this.state.finalX;
+        fetch(url);
       }
       else{
         this.props.sendGraphFinal(event.target.value);
+        url = "Autosave?exerciseId=" + this.state.params["exerciseId"] + "&expression=" + this.state.expression + "&xStart=" + this.state.startX + "&xFinal=" + event.target.value;
+        fetch(url);
       }
     }
   }
+
+  getParameters(url,dict){
+    let i;
+    for(i = 0;url.charAt(i) != '?' && i < url.length;i++);
+    i++;
+    for( ; i < url.length; i++){
+      var key = "";
+      var value = "";
+      while(url.charAt(i) != '='){
+        key = key + url.charAt(i);
+        i++;
+      }
+      i++;
+      while(url.charAt(i) != '&' &&  i < url.length){
+        value = value + url.charAt(i);
+        i++;
+      }
+      i++;
+      dict[key] = value;
+    }
+  }
+
   render() {
     const { expression } = this.state;
     const { integral } = this.state;
@@ -69,6 +118,7 @@ class FormContainer extends Component {
     }
     var paddingTop = {paddingTop: '10px'};
     return (
+      <div>
       <form id="integral-form" className="center-text">
         <Input
           text="Expression"
@@ -118,6 +168,7 @@ class FormContainer extends Component {
           <MathDisplay expression = {definiteIntegral}/>
         </div>
       </form>
+      </div>
     );
   }
 }

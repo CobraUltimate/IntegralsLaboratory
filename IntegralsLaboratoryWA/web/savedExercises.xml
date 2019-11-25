@@ -24,19 +24,6 @@ xsi:noNamespaceSchemaLocation="savedExercisesSchema.xsd">
         
      </user>
      
-     <user id="Ruben1">
-        
-        <exercise id="1">
-            
-            <expression>(20+x*x)^3</expression>
-            <xStart>22</xStart>
-            <xFinal>45</xFinal>
-            <creationDate>2019-11-17</creationDate>
-            
-        </exercise>
-        
-     </user>
-     
     <user id="Ruben2">
         
         <exercise id="0">
@@ -63,9 +50,9 @@ xsi:noNamespaceSchemaLocation="savedExercisesSchema.xsd">
         
     </user>
     
-     <user id="Ruben3">
+     <user id="Ramses">
         
-        <exercise id="1">
+        <exercise id="0">
             
             <expression>x*x^3</expression>
             <xStart>22323</xStart>

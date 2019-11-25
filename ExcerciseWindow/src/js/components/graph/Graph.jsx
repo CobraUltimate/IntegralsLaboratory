@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import Plot from 'react-plotly.js';
-import * as math from 'mathjs';
+import { compile } from 'mathjs';
 import nerdamer from "../../../../nerdamer-master/nerdamer.core";
 
 class Graph extends Component {
@@ -15,7 +15,7 @@ class Graph extends Component {
         super();
         const xInitialValues = [];
         const yInitialValues = [];
-        const expr = math.compile("x*x");
+        const expr = compile("x*x");
         this.getValues(xInitialValues,yInitialValues,-10,10,0.1, (x) => expr.evaluate({x: x}));
         this.state = {
             data: [
@@ -73,7 +73,7 @@ class Graph extends Component {
                 xFinal: nextProps.xFinal
             });
         }
-        const expr = math.compile(expression);
+        const expr = compile(expression);
         const xNewValues = [];
         const yNewValues = [];
         this.getValues(xNewValues,yNewValues,-10,10,0.001, (x) => expr.evaluate({x: x}));

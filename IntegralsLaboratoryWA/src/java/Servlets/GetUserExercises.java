@@ -3,6 +3,7 @@ package Servlets;
 
 import java.io.*;
 import java.util.List;
+import javax.servlet.ServletContext;
 import javax.servlet.http.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,8 +19,11 @@ public class GetUserExercises extends HttpServlet {
             PrintWriter out = response.getWriter();
             HttpSession session = request.getSession();
             String loggedUserId = (String)session.getAttribute("user");
-            SAXBuilder builder = new SAXBuilder(); 
-            Document document = builder.build(request.getServletContext().getResourceAsStream("/savedExercises.xml"));
+            SAXBuilder builder = new SAXBuilder();
+            ServletContext context = request.getServletContext();
+            
+            System.out.println("------------------------" + context.getRealPath("/savedExercises.xml"));
+            Document document = builder.build(context.getRealPath("/savedExercises.xml"));
 
             Element root = document.getRootElement();
             System.out.println(root.getName());
@@ -43,10 +47,8 @@ public class GetUserExercises extends HttpServlet {
                         parameters += "&exerciseId" + j + "=" + exerciseId + "&expression" + j + "=" + expression + "&xStart" + j + "=" + xStart + "&xFinal" + j + "=" + xFinal + "&creationDate" + j + "=" + creationDate ;
                     }
                     parameters += "&exercisesNumber=" + exercises.size();               
-                    out.println("lel");
                     //response.sendRedirect("PresentationServlet"+parameters);
-                    response.sendRedirect("exerciseWindow.html");
-                    out.println("lal");
+                    response.sendRedirect("SaveExercise");
                     return;
                 }
             }

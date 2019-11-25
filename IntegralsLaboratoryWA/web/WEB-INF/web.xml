@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>Autocompletado</servlet-name>
-        <servlet-class>Autocompletado</servlet-class>
+        <servlet-name>Autosave</servlet-name>
+        <servlet-class>Servlets.Autosave</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Loggin</servlet-name>
@@ -16,9 +16,13 @@
         <servlet-name>PresentationServlet</servlet-name>
         <servlet-class>Servlets.PresentationServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SaveExercise</servlet-name>
+        <servlet-class>Servlets.SaveExercise</servlet-class>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>Autocompletado</servlet-name>
-        <url-pattern>/Autocompletado</url-pattern>
+        <servlet-name>Autosave</servlet-name>
+        <url-pattern>/Autosave</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Loggin</servlet-name>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>PresentationServlet</servlet-name>
         <url-pattern>/PresentationServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveExercise</servlet-name>
+        <url-pattern>/SaveExercise</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
