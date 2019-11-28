@@ -78,7 +78,7 @@ class Table extends Component {
         return (
             <div>
                 <section>
-                <form action="ExerciseWindow" method="get" className="center-text">
+                <form action="SaveExercise" method="get" className="center-text">
                         <div className="container-table-form-btn">
                             <Input
                                 text=""
