@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import "./style.css";
+import Input from "../presentational/Input.jsx";
 
 
 class Table extends Component {
@@ -40,13 +41,15 @@ class Table extends Component {
         };
     }
 
+
+
     createTable() {
         let rows = []
         for (let i = 0; i < Number(this.state.params["exercisesNumber"]); i++) {
             let id = [];
-            for (let j = 0; j < 7; j++) {
+            for (let j = 0; j < 8; j++) {
                 if (j == 0) {
-                    id.push(<td>{this.state.params["exerciseId" + i]}</td>)
+                    id.push(<td>{Number(this.state.params["exerciseId" + i]) + 1}</td>)
                 } else if (j == 1) {
                     id.push(<td>{this.state.params["expression" + i]}</td>)
                 } else if (j == 2) {
@@ -56,9 +59,12 @@ class Table extends Component {
                 } else if (j == 4) {
                     id.push(<td>{this.state.params["creationDate" + i]}</td>)
                 } else if (j == 5) {
-                    id.push(<td>MODIFY</td>)
+                    id.push(<td><button onClick={(e) => this.deleteRow(this.state.params["exerciseId" + i],this.state.params["xStart" + i],this.state.params["xFinal" + i], e)}>EDIT</button></td>)
                 } else if (j == 6) {
-                    id.push(<td>DELETE</td>)
+                    id.push(<td><button onClick={(e) => this.deleteRow(this.state.params["exerciseId" + i],this.state.params["expression" + i],this.state.params["xStart" + i],this.state.params["xFinal" + i],this.state.params["creationDate" + i] , e)}>DUPLICATE</button></td>)
+                } else if (j == 7) {
+                    {/*así?*/}
+                    id.push(<td><button onClick={(e) => this.deleteRow(this.state.params["exerciseId" + i], e)}>DELETE</button></td>)
                 }
 
             }
@@ -72,8 +78,8 @@ class Table extends Component {
         return (
             <div>
                 <section>
-                    <h1>Tecnologias para la Web</h1>
                     <div className="tbl-header">
+                        <h1>INTEGRALS LABORATORY</h1>
                         <table cellPadding="0" cellSpacing="0" border="0">
                             <thead>
                                 <tr>
@@ -82,7 +88,8 @@ class Table extends Component {
                                     <th>X START</th>
                                     <th>X END</th>
                                     <th>DATE</th>
-                                    <th>MODIFY</th>
+                                    <th>EDIT</th>
+                                    <th>DUPLICATE</th>
                                     <th>DELETE</th>
                                 </tr>
                             </thead>
@@ -91,17 +98,27 @@ class Table extends Component {
                             </tbody>
                         </table>
                     </div>
+                    <form action="ExerciseWindow" method="get" className="center-text">
+                        <div className="container-table-form-btn">
+                            <Input
+                                text=""
+                                class="table-form-btn"
+                                label="next"
+                                type="submit"
+
+                                id="this"
+                                name="next"
+                                value=" Nuevo Ejercicio "
+                            />
+                        </div>
+                    </form>
+
                 </section>
 
                 <div className="made-with-love">
                     Made with
-              <i>♥</i> by Ramses, Scarlott y Paz
+              <i>♥</i> by Ramses, Antonio y Paz
             </div>
-                {/*<div>
-                    <span style={{ cursor: "not-allowed" }}>
-                        <Button component={Link} disabled>disabled</Button>
-                    </span>
-                </div>*/}
 
                 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script src="./script.js"></script>
             </div>
