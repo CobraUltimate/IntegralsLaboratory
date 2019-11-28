@@ -78,6 +78,20 @@ class Table extends Component {
         return (
             <div>
                 <section>
+                <form action="ExerciseWindow" method="get" className="center-text">
+                        <div className="container-table-form-btn">
+                            <Input
+                                text=""
+                                class="table-form-btn"
+                                label="next"
+                                type="submit"
+
+                                id="this"
+                                name="next"
+                                value=" Nuevo Ejercicio "
+                            />
+                        </div>
+                    </form>
                     <div className="tbl-header">
                         <h1>INTEGRALS LABORATORY</h1>
                         <table cellPadding="0" cellSpacing="0" border="0">
@@ -98,20 +112,7 @@ class Table extends Component {
                             </tbody>
                         </table>
                     </div>
-                    <form action="ExerciseWindow" method="get" className="center-text">
-                        <div className="container-table-form-btn">
-                            <Input
-                                text=""
-                                class="table-form-btn"
-                                label="next"
-                                type="submit"
-
-                                id="this"
-                                name="next"
-                                value=" Nuevo Ejercicio "
-                            />
-                        </div>
-                    </form>
+                   
 
                 </section>
 

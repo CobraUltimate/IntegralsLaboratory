@@ -48,7 +48,8 @@ public class GetUserExercises extends HttpServlet {
                     }
                     parameters += "&exercisesNumber=" + exercises.size();               
                     //response.sendRedirect("PresentationServlet"+parameters);
-                    response.sendRedirect("SaveExercise");
+                    //response.sendRedirect("SaveExercise");
+                    response.sendRedirect("exercisesAdministrator.html"+parameters);
                     return;
                 }
             }
