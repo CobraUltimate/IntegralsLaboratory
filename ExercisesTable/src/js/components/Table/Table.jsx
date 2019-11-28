@@ -1,273 +1,114 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-//import "./TableStyle.css";
 import "./style.css";
-//import "https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css";
+
 
 class Table extends Component {
+
+    getParameters(url, dict) {
+        let i;
+        for (i = 0; url.charAt(i) != '?' && i < url.length; i++);
+        i++;
+        for (; i < url.length; i++) {
+            var key = "";
+            var value = "";
+            while (url.charAt(i) != '=') {
+                key = key + url.charAt(i);
+                i++;
+            }
+            i++;
+            while (url.charAt(i) != '&' && i < url.length) {
+                value = value + url.charAt(i);
+                i++;
+            }
+            dict[key] = value;
+            console.log(key);
+        }
+    }
+
     constructor() {
         super();
+        var params = {};
+        this.getParameters(window.location.href, params);
+        this.state = {
+            expression: "",
+            integral: "",
+            startX: "",
+            finalX: "",
+            definiteIntegral: "",
+            params: params
+        };
+    }
+
+    createTable() {
+        let rows = []
+        for (let i = 0; i < Number(this.state.params["exercisesNumber"]); i++) {
+            let id = [];
+            for (let j = 0; j < 7; j++) {
+                if (j == 0) {
+                    id.push(<td>{this.state.params["exerciseId" + i]}</td>)
+                } else if (j == 1) {
+                    id.push(<td>{this.state.params["expression" + i]}</td>)
+                } else if (j == 2) {
+                    id.push(<td>{this.state.params["xStart" + i]}</td>)
+                } else if (j == 3) {
+                    id.push(<td>{this.state.params["xFinal" + i]}</td>)
+                } else if (j == 4) {
+                    id.push(<td>{this.state.params["creationDate" + i]}</td>)
+                } else if (j == 5) {
+                    id.push(<td>MODIFY</td>)
+                } else if (j == 6) {
+                    id.push(<td>DELETE</td>)
+                }
+
+            }
+            rows.push(<tr>{id}</tr>)
+        }
+        return rows
     }
 
     render() {
+
         return (
             <div>
                 <section>
                     <h1>Tecnologias para la Web</h1>
-                    <div class="tbl-header">
-                        <table cellpadding="0" cellspacing="0" border="0">
+                    <div className="tbl-header">
+                        <table cellPadding="0" cellSpacing="0" border="0">
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>NOMBRE</th>
-                                    <th>FECHA</th>
-                                    <th>MODIFICAR</th>
-                                    <th>ELIMINAR</th>
+                                    <th>ID</th>
+                                    <th>EXPRESION</th>
+                                    <th>X START</th>
+                                    <th>X END</th>
+                                    <th>DATE</th>
+                                    <th>MODIFY</th>
+                                    <th>DELETE</th>
                                 </tr>
                             </thead>
-                        </table>
-                    </div>
-                    <div class="tbl-content">
-                        <table cellpadding="0" cellspacing="0" border="0">
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>GRAFICA_1</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>GRAFICA_2</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>GRAFICA_3</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>GRAFICA_4</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>GRAFICA_5</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>GRAFICA_6</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>7</td>
-                                    <td>GRAFICA_7</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>8</td>
-                                    <td>GRAFICA_8</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>9</td>
-                                    <td>GRAFICA_9</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>10</td>
-                                    <td>GRAFICA_10</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>11</td>
-                                    <td>GRAFICA_11</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>12</td>
-                                    <td>GRAFICA_12</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>13</td>
-                                    <td>GRAFICA_13</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>14</td>
-                                    <td>GRAFICA_14</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>15</td>
-                                    <td>GRAFICA_15</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>16</td>
-                                    <td>GRAFICA_16</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>17</td>
-                                    <td>GRAFICA_17</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>18</td>
-                                    <td>GRAFICA_18</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>19</td>
-                                    <td>GRAFICA_19</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>20</td>
-                                    <td>GRAFICA_20</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>21</td>
-                                    <td>GRAFICA_21</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>22</td>
-                                    <td>GRAFICA_22</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>23</td>
-                                    <td>GRAFICA_23</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>24</td>
-                                    <td>GRAFICA_24</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>25</td>
-                                    <td>GRAFICA_25</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>26</td>
-                                    <td>GRAFICA_26</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>27</td>
-                                    <td>GRAFICA_27</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>28</td>
-                                    <td>GRAFICA_28</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>29</td>
-                                    <td>GRAFICA_29</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>30</td>
-                                    <td>GRAFICA_30</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>31</td>
-                                    <td>GRAFICA_31</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
-                                <tr>
-                                    <td>32</td>
-                                    <td>GRAFICA_32</td>
-                                    <td>17/11/19</td>
-                                    <td>MODIFICAR</td>
-                                    <td>ELIMINAR</td>
-                                </tr>
+                                {this.createTable()}
                             </tbody>
                         </table>
                     </div>
                 </section>
 
-                <div class="made-with-love">
+                <div className="made-with-love">
                     Made with
               <i>♥</i> by Ramses, Scarlott y Paz
             </div>
+                {/*<div>
+                    <span style={{ cursor: "not-allowed" }}>
+                        <Button component={Link} disabled>disabled</Button>
+                    </span>
+                </div>*/}
 
                 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script src="./script.js"></script>
             </div>
         );
     }
+
 }
+
 
 export default Table;
