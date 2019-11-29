@@ -38,7 +38,7 @@ public class SaveExercise extends HttpServlet {
                     List exercises = (List)user.getChildren("exercise");
                     parameters += "exerciseId=" + exercises.size();
                     
-                    String currentDate = new SimpleDateFormat("dd-MMM-aaaa").format(new Date()); 
+                    String currentDate = new SimpleDateFormat("dd-mmm-yyyy").format(new Date()); 
                     Element expression = new Element("expression");
                     Element xStart = new Element("xStart");
                     Element xFinal = new Element("xFinal");

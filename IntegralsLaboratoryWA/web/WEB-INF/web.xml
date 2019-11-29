@@ -20,6 +20,14 @@
         <servlet-name>SaveExercise</servlet-name>
         <servlet-class>Servlets.SaveExercise</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteExercise</servlet-name>
+        <servlet-class>Servlets.DeleteExercise</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CloneExercise</servlet-name>
+        <servlet-class>Servlets.CloneExercise</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Autosave</servlet-name>
         <url-pattern>/Autosave</url-pattern>
@@ -39,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>SaveExercise</servlet-name>
         <url-pattern>/SaveExercise</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteExercise</servlet-name>
+        <url-pattern>/DeleteExercise</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CloneExercise</servlet-name>
+        <url-pattern>/CloneExercise</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

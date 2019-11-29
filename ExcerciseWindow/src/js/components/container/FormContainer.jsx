@@ -14,46 +14,48 @@ class FormContainer extends Component {
 
     var params = {};
     this.getParameters(window.location.href,params);
-
-    this.state = {
-      expression: "",
-      integral: "",
-      startX: "",
-      finalX: "",
-      definiteIntegral: "",
-      params: params
-    };
+    if(params["expression"] === undefined || params["expression"] === null){
+      this.state = {
+        expression: "",
+        integral: "",
+        startX: "",
+        finalX: "",
+        definiteIntegral: "",
+        params: params
+      };
+    }
+    else{
+      this.state = {
+        expression: params["expression"],
+        integral: "",
+        startX: params["xStart"],
+        finalX: params["xFinal"],
+        definiteIntegral: "",
+        params: params
+      };
+    }
     this.handleChange = this.handleChange.bind(this);
-  }
-
-  async save(url){
-    let response = await fetch(url);
-        if (response.ok) { // if HTTP-status is 200-299
-          // get the response body (the method explained below)
-          let json = await response.json();
-          alert("HTTP-Error: " + response.status);
-          alert("HTTP-Error: " + response.json);
-        } else {
-          alert("HTTP-Error: " + response.status);
-        }
   }
   
   componentDidMount(){
-    this.setState({
-      expression: "",
-      integral: "",
-      definiteIntegral: ""
-    });
-    this.props.sendExpression("x");
+    if(this.state.params["expression"] === undefined || this.state.params["expression"] === null ){
+      this.props.sendExpression("x");
+      this.props.sendGraphStart("2");
+      this.props.sendGraphFinal("4");
+    }
+    else{
+      this.props.sendExpression(this.state.expression);
+      this.props.sendGraphStart(this.state.startX);
+      this.props.sendGraphFinal(this.state.finalX);
+    }
   }
+
   handleChange(event) {
     var url;
     if ([event.target.id] == "expression"){
       try {
-        const expressionIntegral = nerdamer("integrate(" + event.target.value + ",x)");
         this.setState({ 
           [event.target.id]: event.target.value,
-          integral: expressionIntegral
         });
         this.props.sendExpression(event.target.value);
 
@@ -63,7 +65,6 @@ class FormContainer extends Component {
       } catch (error) {
         this.setState({
           [event.target.id]: event.target.value,
-          integral: ""
         });
       }
     }
@@ -100,26 +101,28 @@ class FormContainer extends Component {
         value = value + url.charAt(i);
         i++;
       }
-      i++;
       dict[key] = value;
     }
   }
 
   render() {
     const { expression } = this.state;
-    const { integral } = this.state;
+    var { integral } = this.state;
     const { startX } = this.state;
     const { finalX } = this.state;
     var { definiteIntegral } = this.state;
     try{
+      integral = nerdamer("integrate(" + this.state.expression + ",x)"),
       definiteIntegral = nerdamer("defint(" + this.state.expression + "," + this.state.startX + "," + this.state.finalX + ",x)").toString();
     }
     catch(error){
+      integral = "";
+      definiteIntegral = "";
     }
     var paddingTop = {paddingTop: '10px'};
     return (
       <div>
-      <form id="integral-form" className="center-text">
+      <form action="GetUserExercises" method="get" id="integral-form" className="center-text">
         <Input
           text="Expression"
           label="expression"
@@ -128,7 +131,7 @@ class FormContainer extends Component {
           value={expression}
           handleChange={this.handleChange}
         />
-        <MathDisplay expression = {expression}/>
+        <MathDisplay expression = {this.state.expression}/>
         <div style={paddingTop}>
           <label>Integral</label>
           <MathDisplay expression = {integral.toString()}/>
@@ -166,6 +169,9 @@ class FormContainer extends Component {
         <div style={paddingTop}>
           <label>Definite Integral</label>
           <MathDisplay expression = {definiteIntegral}/>
+        </div>
+        <div style={paddingTop}>
+          <input type="submit" value="Back"/>
         </div>
       </form>
       </div>

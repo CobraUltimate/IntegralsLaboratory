@@ -40,39 +40,46 @@ class Graph extends Component {
             layout: {autosize: true},
             frames: [],
             config: {},
-            xStart: "0",
-            xFinal: "-1"
+            expression: "",
+            xStart: "",
+            xFinal: ""
         };
     }
   componentWillReceiveProps(nextProps) { 
     try {
+
         var expression;
         var xStart;
         var xFinal;
-        if(nextProps.expression != this.props.expression){
+
+        if(nextProps.expression != this.state.expression){
             expression = nextProps.expression;
-            xStart = this.state.xStart;
-            xFinal = this.state.xFinal;
             this.setState({
                 expression: expression
             });
         }
-        else if(nextProps.xStart != this.props.xStart){
+        else{
             expression = this.state.expression;
+        }
+        if(nextProps.xStart != this.state.xStart){
             xStart = nextProps.xStart;
-            xFinal = this.state.xFinal;
             this.setState({
                 xStart: nextProps.xStart
             });
         }
         else{
-            expression = this.state.expression;
             xStart = this.state.xStart;
+        }
+        if(nextProps.xFinal != this.state.xFinal){
             xFinal = nextProps.xFinal;
             this.setState({
                 xFinal: nextProps.xFinal
             });
         }
+        else{
+            xFinal = this.state.xFinal
+        }
+
         const expr = compile(expression);
         const xNewValues = [];
         const yNewValues = [];
@@ -80,7 +87,7 @@ class Graph extends Component {
         
         const xShadowValues = [];
         const yShadowValues = [];
-        this.getValues(xShadowValues,yShadowValues,parseInt(xStart),parseInt(xFinal),0.001,(x) => expr.evaluate({x: x}));
+        this.getValues(xShadowValues,yShadowValues,parseFloat(xStart),parseFloat(xFinal),0.001,(x) => expr.evaluate({x: x}));
 
         const newLayout = Object.assign({}, this.state.layout);
         newLayout.datarevision++;

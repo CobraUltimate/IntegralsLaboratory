@@ -47,18 +47,45 @@ class Table extends Component {
     createTable() {
         let rows = []
         for (let i = 0; i < Number(this.state.params["exercisesNumber"]); i++) {
-            let id = [];
-            id.push(<td>{Number(this.state.params["exerciseId" + i]) + 1}</td>)
-            id.push(<td>{this.state.params["expression" + i]}</td>)
-            id.push(<td>{this.state.params["xStart" + i]}</td>)
-            id.push(<td>{this.state.params["xFinal" + i]}</td>)
-            id.push(<td>{this.state.params["creationDate" + i]}</td>)
-            id.push(<td><button onClick={(e) => this.sendRedirect("ExcerciseWindow/?exerciseId=" + this.state.params["exercisesId" + i] + "&expression=" + this.satate.params["expression" + i] + "&xStart=" + this.state.params["xStart" + i] + "&xFinal=" + this.state.params["xFinal" + i] + "&creationDate=" + this.state.params["creationDate" + i], e)}>EDIT</button></td>)
-            id.push(<td><button onClick={(e) => this.deleteRow(this.state.params["exerciseId" + i],this.state.params["expression" + i],this.state.params["xStart" + i],this.state.params["xFinal" + i],this.state.params["creationDate" + i] , e)}>DUPLICATE</button></td>)
-            id.push(<td><button onClick={(e) => this.deleteRow(this.state.params["exerciseId" + i], e)}>DELETE</button></td>)
-            rows.push(<tr>{id}</tr>)
+            const exerciseId = Number(this.state.params["exerciseId" + i]);
+            const expression = this.state.params["expression" + i];
+            const xStart = this.state.params["xStart" + i];
+            const xFinal = this.state.params["xFinal" + i];
+            let data = [];
+            data.push(<td>{exerciseId + 1}</td>)
+            data.push(<td>{expression}</td>)
+            data.push(<td>{xStart}</td>)
+            data.push(<td>{xFinal}</td>)
+            data.push(<td>{this.state.params["creationDate" + i]}</td>)
+            data.push(<td><button class="table-form-button" id={i} onClick={ (e) => this.goExerciseWindow(e = {id: i}) }>EDIT</button></td>)
+            data.push(<td><button class="table-form-button" id={i} onClick={ (e) => this.cloneExercise(e = {id: i}) }>CLONE</button></td>)
+            data.push(<td><button class="table-form-button" id={i} onClick={ (e) => this.deleteExercise(e = {id: i}) }>DELETE</button></td>)
+            rows.push(<tr>{data}</tr>)
         }
         return rows
+    }
+
+    goExerciseWindow(e){
+        var i = e.id;
+        const exerciseId = Number(this.state.params["exerciseId" + i]);
+        const expression = this.state.params["expression" + i];
+        const xStart = this.state.params["xStart" + i];
+        const xFinal = this.state.params["xFinal" + i];
+        window.location = "exerciseWindow.html?exerciseId=" + exerciseId + "&expression=" + expression + "&xStart=" + xStart + "&xFinal=" + xFinal;
+    }
+
+    deleteExercise(e){
+        var i = e.id;
+        const exerciseId = Number(this.state.params["exerciseId" + i]);
+        window.location = "DeleteExercise?exerciseId=" + exerciseId;
+    }
+
+    cloneExercise(e){
+        var i = e.id;
+        const expression = this.state.params["expression" + i];
+        const xStart = this.state.params["xStart" + i];
+        const xFinal = this.state.params["xFinal" + i];
+        window.location = "CloneExercise?" + "expression=" + expression + "&xStart=" + xStart + "&xFinal=" + xFinal;
     }
 
     render() {
@@ -106,7 +133,7 @@ class Table extends Component {
 
                 <div className="made-with-love">
                     Made with
-              <i>♥</i> by Ramses, Antonio and Paz
+              {<i>♥</i> + " by Ramsés, Antonio & Paz"}
             </div>
 
                 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script src="./script.js"></script>

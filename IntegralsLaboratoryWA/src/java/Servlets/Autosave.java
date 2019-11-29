@@ -30,7 +30,6 @@ public class Autosave extends HttpServlet {
             Element root = document.getRootElement();
             System.out.println("Seraching for the user");
             List users = (List)root.getChildren("user");
-            
             for (int i = 0; i < users.size(); i++)
             {
                 Element user = (Element) users.get(i);
@@ -44,13 +43,18 @@ public class Autosave extends HttpServlet {
                         Element exercise = (Element) exercises.get(j);
                         if(exerciseId.equals(exercise.getAttributeValue("id"))){
                             System.out.println("Exercise found");
-                            System.out.println("Expression: " + request.getParameter("expression"));
+                            
+                            String location = request.getQueryString();
+                            String expression = location.substring(location.indexOf("expression=") + "expression=".length());
+                            if( expression.indexOf('&') > -1){
+                                expression = expression.substring(0,expression.indexOf('&'));
+                            }
+                            System.out.println("Expression: " + expression);
                             System.out.println("xStart: " + request.getParameter("xStart"));
                             System.out.println("xFinal: " + request.getParameter("xFinal"));
-                            exercise.getChild("expression").setContent(new Text(request.getParameter("expression")));
+                            exercise.getChild("expression").setText(expression);
                             exercise.getChild("xStart").setText(request.getParameter("xStart"));
                             exercise.getChild("xFinal").setText(request.getParameter("xFinal"));
-                            System.out.println("Not know what is wrong");
                             
                             XMLOutputter fmt = new XMLOutputter();
                             FileWriter writer = null;

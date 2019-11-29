@@ -44,9 +44,9 @@ public class GetUserExercises extends HttpServlet {
                         String xStart = exercise.getChildText("xStart");
                         String xFinal = exercise.getChildText("xFinal");
                         String creationDate = exercise.getChildText("creationDate");
-                        parameters += "&exerciseId" + j + "=" + exerciseId + "&expression" + j + "=" + expression + "&xStart" + j + "=" + xStart + "&xFinal" + j + "=" + xFinal + "&creationDate" + j + "=" + creationDate ;
+                        parameters += "exerciseId" + j + "=" + exerciseId + "&expression" + j + "=" + expression + "&xStart" + j + "=" + xStart + "&xFinal" + j + "=" + xFinal + "&creationDate" + j + "=" + creationDate + "&";
                     }
-                    parameters += "&exercisesNumber=" + exercises.size();               
+                    parameters += "exercisesNumber=" + exercises.size();               
                     //response.sendRedirect("PresentationServlet"+parameters);
                     //response.sendRedirect("SaveExercise");
                     response.sendRedirect("exercisesAdministrator.html"+parameters);
